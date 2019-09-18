@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PhotoServiceService } from 'src/app/services/photo-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-all-photos',
@@ -10,22 +11,28 @@ export class ViewAllPhotosComponent implements OnInit {
 
   photos: any = [];
 
-  constructor(private photoService: PhotoServiceService) { }
+  constructor(
+    private photoService: PhotoServiceService,
+    private route:Router
+
+  ) { }
 
   ngOnInit() {
     this.allPhotos();
   }
 
   allPhotos() {
-    
+
     this.photoService.getAllPhotos().subscribe(
       res => {
         this.photos = res,
-          console.log(res)
+        console.log(res)
       }, err => {
         console.log(err)
       }
+      
     )
+    this.allPhotos();
   }
 
 }

@@ -10,7 +10,7 @@ import { ViewAllPhotosComponent } from './components/view-all-photos/view-all-ph
 const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
   { path: 'index', component: IndexComponent },
-  { path: 'add_img', component: AddPhotoComponent },
+  { path: 'add_photo', component: AddPhotoComponent },
   { path: 'users', component: ViewUsersComponent },
   { path: 'photo/:id', component: ViewPhotoComponent },
   { path: 'photos', component: ViewAllPhotosComponent },
