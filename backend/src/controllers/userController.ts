@@ -33,13 +33,13 @@ class UserControllers {
     public async enableUser(req: Request, res: Response) {
         const { id } = req.params;
         await pool.query('update USERS set able=true where id_user = $1 ', [id]);
-        res.redirect('/enabled')
+        res.redirect('/users/enabled')
     }
 
     public async disableUser(req: Request, res: Response) {
         const { id } = req.params;
         await pool.query('update USERS set able = false where id_user = $1 ', [id]);
-        res.redirect('/disabled')
+        res.redirect('/users/disabled')
     }
 
     public async updateUser(req: Request, res: Response) {
