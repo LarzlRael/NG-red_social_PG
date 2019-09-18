@@ -13,6 +13,7 @@ create table photo
 	url text not null,
 	name varchar(25),
 	description varchar(25),
+	fecha TIMESTAMP,
 	id_user int
 )
 
