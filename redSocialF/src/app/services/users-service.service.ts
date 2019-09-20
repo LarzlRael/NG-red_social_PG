@@ -20,7 +20,16 @@ export class UsersServiceService {
     return this.http.get(`${this.URI}/enable/${id}`)
   }
   disableUser(id) {
-    
+
     return this.http.get(`${this.URI}/disable/${id}`)
+  }
+
+  //post methods 
+  addNewUser(name, email) {
+    const user = {
+      name,
+      email
+    }
+    return this.http.post(this.URI, user);
   }
 }

@@ -5,13 +5,43 @@
                 <h2>{{photo.title}}</h2>
             </div>
             <div class="card-body">
-                <img src="http://localhost:3000/{{photo.url}}" 
-                class="img-fluid"
-                alt="">
+                <img src="http://localhost:3000/{{photo.url}}" class="img-fluid" alt="">
             </div>
+
             <div class="card-footer">
                 {{photo.description}} <br>
                 <i class="">subido en {{photo.fecha}}</i>
+                <br>
+                <button class="btn btn-danger" 
+                (click)="DeleteThisPhoto(photo.id_img)">Eliminar</button>
+
+                <form (submit)="addNewComment(content)">
+                    <div class="form-group">
+
+                        <input type="text" #content placeholder="Escribe un comentario" id="" class="form-control">
+
+                        <b>Vistas</b>:{{photo.views}}<br>
+
+                        <button class="btn btn-success">Comentar</button>
+                    </div>
+                </form>
+
+                <button class="btn btn-success"
+                (click)="Ilike(photo.id_img)"
+                >Me encanta</button>
+                <ng-container *ngIf="!photo.likes == 0; else elseTemplate">
+                    likes : {{likeCounter.likes}}
+                </ng-container>
+
+                <ng-template #elseTemplate>
+
+                </ng-template>
+
+                <div class="comentarios" *ngFor="let photoComment of photoComments">
+                    <p>
+                        {{photoComment.content}}
+                    </p>
+                </div>
             </div>
         </div>
     </div>

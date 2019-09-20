@@ -9,6 +9,7 @@ class CommentRoutes {
         //get routes
         this.router.get('/', commentsController.viewUserComments);
         this.router.get('/:id/like', commentsController.likeComment);
+        this.router.get('/:id', commentsController.photoComments);
 
 
         //post routes

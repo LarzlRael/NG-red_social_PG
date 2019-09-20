@@ -12,8 +12,8 @@ class UserRoute {
         this.router.get('/:id', photoControler.getOnePhoto);
         this.router.post('/', multer.single('image'), photoControler.createPhoto)
         //like module
-        this.router.get('/:id/like', photoControler.likePhoto);
-        
+        this.router.get('/:id/like',photoControler.likePhoto);
+
         //get routes
         this.router.delete('/:id', photoControler.deletePhoto);
 

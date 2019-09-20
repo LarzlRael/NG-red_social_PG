@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsersServiceService } from 'src/app/services/users-service.service';
 import { PhotoServiceService } from 'src/app/services/photo-service.service';
 import { Router } from '@angular/router';
+import { FormsModule, NgForm } from '@angular/forms'
 
 interface HtmlInputEvent extends Event {
   target: HTMLInputElement & EventTarget
@@ -20,7 +21,7 @@ export class AddPhotoComponent implements OnInit {
   constructor(
     private userService: UsersServiceService,
     private photoService: PhotoServiceService,
-    private route:Router
+    private route: Router
   ) { }
 
   ngOnInit() {
@@ -41,40 +42,50 @@ export class AddPhotoComponent implements OnInit {
   getAllPhotos() {
     this.photoService.getAllPhotos().subscribe(
       res => {
-        this.allPhotos=res,
-        console.log(res)
-      },
-      err=>{
-        console.log(err)
-      }
-    )
-  }
-
-  addNewPhoto(title: HTMLInputElement, description: HTMLInputElement) {
-    this.photoService.newPhoto(title.value, description.value, this.file).subscribe(
-      res => {
-        console.log(res),
-        this.getAllPhotos()
+        this.allPhotos = res,
+          console.log(res)
       },
       err => {
         console.log(err)
       }
     )
+  }
+  //************************************************************ */
+
+  addNewPhoto(imgForm, title: HTMLInputElement, description: HTMLInputElement, id_user: HTMLOptionElement) {
+
+    this.photoService.newPhoto(title.value, description.value, this.file, id_user.value).subscribe(
+      res => {
+        console.log(res),
+          this.getAllPhotos(),
+          imgForm.reset(),
+          imgForm.nativeElement.reset()
+
+      },
+      err => {
+        console.log(err)
+      }
+    )
+
+
+
     return false;
   }
 
 
-
-  enableUser: any = [];
+  //******************************* */
+  enableUsers: any = [];
   getEnabledUsers() {
     this.userService.getEnableUsers().subscribe(
       res => {
-        this.enableUser = res,
-          console.log(this.enableUser)
+        this.enableUsers = res,
+          console.log(this.enableUsers)
       }, err => {
         console.log(err)
       }
     )
 
   }
+
+  
 }

@@ -12,12 +12,14 @@ class PhotoController {
         res.json({ text: 'photo added sucessfully' });
     }
     public async allPhotos(req: Request, res: Response) {
-        const allPhotos = await pool.query('SELECT * FROM photos');
+        const allPhotos = await pool.query('SELECT * FROM photos  order by id_img DESC limit 6');
         res.json(allPhotos.rows);
     }
     public async getOnePhoto(req: Request, res: Response) {
         const { id } = req.params;
-        const onePhoto = await pool.query('SELECT * FROM photos WHERE id_img = $1', [id])
+        const onePhoto = await pool.query('SELECT * FROM photos WHERE id_img = $1', [id]);
+
+        await pool.query('UPDATE photos SET views = views+1 WHERE id_img = $1', [id]);
         res.json(onePhoto.rows);
     }
 
@@ -46,11 +48,15 @@ class PhotoController {
         res.json({ text: 'photo update sucessfully' });
     }
     //metodo para dar likes :D
+
     public async likePhoto(req: Request, res: Response) {
         const { id } = req.params;
+        console.log('id rescibido : ',id)
         await pool.query('UPDATE photos SET likes = likes+1 WHERE id_img = $1', [id]);
-        res.redirect(`/photos/${id}`);
+
+        res.json({ text: 'you liket this photo' })
     }
+
 
 }
 

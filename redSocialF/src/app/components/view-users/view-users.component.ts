@@ -11,13 +11,46 @@ export class ViewUsersComponent implements OnInit {
 
   constructor(private userService: UsersServiceService) { }
   users: any = [];
-  enabledUsers: any = [];
+
+  enabledUser: any = [];
+
   disabledUsers: any = [];
+
   ngOnInit() {
-    this.getUsers()
+    this.updatePage();
+
   }
+
+  newUser(name: HTMLInputElement, email: HTMLInputElement) {
+    this.userService.addNewUser(name.value, email.value).subscribe(
+      res => {
+        console.log(res),
+        this.updatePage();
+      },
+      err => {
+        console.log(err)
+      }
+    )
+    name.value = '';
+    email.value = '';
+    return false;
+  }
+  //******************************** */
+  allEnableUsers: any = [];
+  getEnableThoseUsers() {
+    this.userService.getEnableUsers().subscribe(
+      res=>{
+        this.allEnableUsers=res,
+        console.log(this.allEnableUsers)
+      },
+      err=>{
+        console.log(err)
+      }
+    )
+  }
+  //************************************************* */
   getUsers() {
-    console.log('estoy funcionando');
+
     this.userService.getUsers().subscribe(
       res => {
         this.users = res,
@@ -26,13 +59,14 @@ export class ViewUsersComponent implements OnInit {
       err => console.log(err)
     )
   }
-  enableUser(id) {
+  enableThisUser(id) {
     this.userService.enableUser(id).subscribe(
       res => {
 
 
-        this.enabledUsers = res;
-        console.log(this.enabledUsers)
+        this.enabledUser = res;
+        console.log(this.enabledUser),
+        this.updatePage();
       },
       err => {
         console.log(err)
@@ -44,12 +78,18 @@ export class ViewUsersComponent implements OnInit {
     this.userService.disableUser(id).subscribe(
       res => {
         this.disabledUsers = res;
-        console.log(this.disabledUsers)
+        console.log(this.disabledUsers),
+        this.updatePage();
       },
       err => {
         console.log(err)
       }
     )
+  }
+
+  updatePage(){
+    this.getUsers();
+    this.getEnableThoseUsers();
   }
 
 }

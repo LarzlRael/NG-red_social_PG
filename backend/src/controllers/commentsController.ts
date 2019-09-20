@@ -29,7 +29,12 @@ class CommentsController {
         const { id } = req.params;
 
         await pool.query('UPDATE comentarios set likes = likes+1 where id_comment=$1', [id]);
-        res.redirect('/comments');
+        res.json({ text: 'you liked this photo :D' })
+    }
+    public async photoComments(req: Request, res: Response) {
+        const { id } = req.params;
+        const photoComments = await pool.query('SELECT c.content ,p.id_img FROM comentarios c INNER JOIN photos p ON c.id_img =  p.id_img AND p.id_img = $1', [id]);
+        return res.json(photoComments.rows);
     }
 }
 

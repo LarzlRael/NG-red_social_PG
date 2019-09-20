@@ -32,7 +32,7 @@ export class ViewAllPhotosComponent implements OnInit {
       }
       
     )
-    this.allPhotos();
+    
   }
 
 }

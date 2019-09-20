@@ -43,7 +43,7 @@ class Server {
     //static files
     
     staticFiles(){
-        this.app.use('uploads',express.static(path.resolve('uploads')));
+        this.app.use('/uploads',express.static(path.resolve('uploads')));
     }
     //start the server
     start() {

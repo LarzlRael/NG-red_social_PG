@@ -4,9 +4,9 @@ class UserControllers {
 
     //get all users method
     public async allusers(req: Request, res: Response) {
-        const allUsers = await pool.query('SELECT * FROM users');
+        const allUsers = await pool.query('SELECT * FROM users ORDER BY id_user DESC');
 
-        res.json({ users: allUsers.rows })
+        res.json( allUsers.rows )
     }
 
     public async newUser(req: Request, res: Response) {
@@ -18,7 +18,7 @@ class UserControllers {
     public async oneUser(req: Request, res: Response) {
         const { id } = req.params;
         const oneUser = await pool.query('SELECT * FROM users where id_user = $1', [id]);
-        res.json({ user: oneUser.rows });
+        res.json( oneUser.rows );
     }
 
     public async viewEnabledUsers(req: Request, res: Response) {
