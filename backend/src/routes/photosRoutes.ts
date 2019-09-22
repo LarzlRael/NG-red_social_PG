@@ -9,6 +9,7 @@ class UserRoute {
     public config() {
         //get routes
         this.router.get('/', photoControler.allPhotos);
+        this.router.get('/somePhotos', photoControler.somePhotos);
         this.router.get('/:id', photoControler.getOnePhoto);
         this.router.post('/', multer.single('image'), photoControler.createPhoto)
         //like module

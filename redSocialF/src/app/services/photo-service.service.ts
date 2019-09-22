@@ -12,6 +12,9 @@ export class PhotoServiceService {
   getAllPhotos() {
     return this.http.get(this.URI);
   }
+  getSomePhotos() {
+    return this.http.get(this.URI+'/somePhotos');
+  }
   getPhoto(id: string | number) {
     return this.http.get(`${this.URI}/${id}`);
   }

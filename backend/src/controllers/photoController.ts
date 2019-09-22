@@ -11,7 +11,14 @@ class PhotoController {
         await pool.query('INSERT INTO photos(title,description,url,id_user)values($1,$2,$3,$4)', [title, description, url, id_user]);
         res.json({ text: 'photo added sucessfully' });
     }
+
+
     public async allPhotos(req: Request, res: Response) {
+        const allPhotos = await pool.query('SELECT * FROM photos  order by id_img DESC ');
+        res.json(allPhotos.rows);
+    }
+
+    public async somePhotos(req: Request, res: Response) {
         const allPhotos = await pool.query('SELECT * FROM photos  order by id_img DESC limit 6');
         res.json(allPhotos.rows);
     }

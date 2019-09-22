@@ -10,6 +10,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { ViewPhotoComponent } from './components/view-photo/view-photo.component';
 import { ViewAllPhotosComponent } from './components/view-all-photos/view-all-photos.component';
 import { HttpClientModule } from '@angular/common/http';
+import { StatsComponent } from './components/stats/stats.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
     ViewUsersComponent,
     NavigationComponent,
     ViewPhotoComponent,
-    ViewAllPhotosComponent
+    ViewAllPhotosComponent,
+    StatsComponent
   ],
   imports: [
     BrowserModule,

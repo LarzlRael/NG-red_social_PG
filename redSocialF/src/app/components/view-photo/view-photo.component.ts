@@ -61,8 +61,6 @@ export class ViewPhotoComponent implements OnInit {
     this.commentService.viewCommentsThisPhoto(this.id).subscribe(
       res => {
         this.photoComments = res
-
-
       },
       err => {
         console.log(err)

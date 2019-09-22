@@ -13,26 +13,39 @@ export class ViewAllPhotosComponent implements OnInit {
 
   constructor(
     private photoService: PhotoServiceService,
-    private route:Router
+    private route: Router
 
   ) { }
 
   ngOnInit() {
     this.allPhotos();
+
   }
+
 
   allPhotos() {
 
     this.photoService.getAllPhotos().subscribe(
       res => {
         this.photos = res,
-        console.log(res)
+          console.log(this.photos)
       }, err => {
         console.log(err)
       }
-      
+
     )
+
+  }
+  Ilike(id) {
     
+    this.photoService.IlikeThisPhoto(id).subscribe(
+      res => {
+        this.allPhotos()
+      }, err => {
+        console.log(err)
+      }
+
+    )
   }
 
 }

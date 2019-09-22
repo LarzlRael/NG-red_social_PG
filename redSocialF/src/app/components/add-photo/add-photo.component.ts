@@ -40,7 +40,7 @@ export class AddPhotoComponent implements OnInit {
   }
   allPhotos: any = [];
   getAllPhotos() {
-    this.photoService.getAllPhotos().subscribe(
+    this.photoService.getSomePhotos().subscribe(
       res => {
         this.allPhotos = res,
           console.log(res)
@@ -52,14 +52,14 @@ export class AddPhotoComponent implements OnInit {
   }
   //************************************************************ */
 
-  addNewPhoto(imgForm, title: HTMLInputElement, description: HTMLInputElement, id_user: HTMLOptionElement) {
+  addNewPhoto(imgForm:NgForm, title: HTMLInputElement, description: HTMLInputElement, id_user: HTMLOptionElement) {
 
     this.photoService.newPhoto(title.value, description.value, this.file, id_user.value).subscribe(
       res => {
         console.log(res),
           this.getAllPhotos(),
-          imgForm.reset(),
-          imgForm.nativeElement.reset()
+          imgForm.reset()
+          
 
       },
       err => {
