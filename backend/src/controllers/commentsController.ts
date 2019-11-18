@@ -36,6 +36,11 @@ class CommentsController {
         const photoComments = await pool.query('SELECT c.content ,p.id_img FROM comentarios c INNER JOIN photos p ON c.id_img =  p.id_img AND p.id_img = $1', [id]);
         return res.json(photoComments.rows);
     }
+
+    public async lastComments(req: Request, res: Response) {
+        const someComments = await pool.query('SELECT content from comentarios order by id_comment DESC LIMIT 3');
+        return res.json(someComments.rows);
+    }
 }
 
 

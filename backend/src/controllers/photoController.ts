@@ -58,12 +58,19 @@ class PhotoController {
 
     public async likePhoto(req: Request, res: Response) {
         const { id } = req.params;
-        console.log('id rescibido : ',id)
+        console.log('id rescibido : ', id)
         await pool.query('UPDATE photos SET likes = likes+1 WHERE id_img = $1', [id]);
 
         res.json({ text: 'you liket this photo' })
     }
 
+    //metodo para saber quienes tiene mas likes
+
+    public async photoWithMostLikes(req: Request, res: Response) {
+        const photoslikes = await pool.query('SELECT id_img,title,likes,url FROM photos ORDER BY likes DESC LIMIT 3');
+        return res.json(photoslikes.rows);
+
+    }
 
 }
 

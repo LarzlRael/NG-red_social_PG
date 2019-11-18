@@ -39,4 +39,7 @@ export class PhotoServiceService {
   IlikeThisPhoto(id: number | string) {
     return this.http.get(`${this.URI}/${id}/like`);
   }
+  mostLikesphotos(){
+    return this.http.get(this.URI+'/mostLikes')
+  }
 }

@@ -1,1 +1,13 @@
-<p>stats works!</p>
+<h2>Mas populares</h2>
+<div class="card" *ngFor="let popular of populars">
+    <div class="card-header">
+    </div>
+    <div class="card-body">
+        <a routerLink="/photo/{{popular.id_img}}">
+            <img src="http://localhost:3000/{{popular.url}}" class="img-fluid" alt="">
+        </a>
+        Likes : {{popular.likes}}
+    </div>
+</div>
+
+<h3>Comentarios Recientes</h3>

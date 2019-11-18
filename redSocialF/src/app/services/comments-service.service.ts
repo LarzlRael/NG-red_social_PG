@@ -17,15 +17,18 @@ export class CommentsServiceService {
       id_img,
       content
     }
-    return this.http.post(this.URI+'/', newComment);
+    return this.http.post(this.URI + '/', newComment);
 
   }
   viewCommentsThisPhoto(id_img) {
     return this.http.get(`${this.URI}/${id_img}`);
   }
 
- 
-  
+  lastedComments(){
+    return this.http.get(this.URI+'/someComments')
+    
+  }
+
 
 }
 
